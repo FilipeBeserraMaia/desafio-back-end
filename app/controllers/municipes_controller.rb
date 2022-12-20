@@ -21,6 +21,7 @@ class MunicipesController < ApplicationController
   # GET /municipes/new
   def new
     @municipe = Municipe.new
+    @municipe.build_endereco
   end
 
   # GET /municipes/1/edit

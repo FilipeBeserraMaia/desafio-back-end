@@ -4,7 +4,7 @@ class Municipe < ApplicationRecord
   has_one_attached :foto
   accepts_nested_attributes_for :endereco, reject_if: :all_blank
 
-  validates_presence_of :nome, :cpf, :cns, :email, :dta_nasc, :telefone, :status, :foto
+  validates_presence_of :nome, :cpf, :cns, :email, :dta_nasc, :telefone, :status ,:foto
 
   validates_length_of :nome, minimum: 1, maximum: 80
   validates_length_of :cpf, minimum: 11, maximum: 11
@@ -14,6 +14,14 @@ class Municipe < ApplicationRecord
   validate :validate_cpf, :validate_email, :validate_cns, :validate_nacimento
 
   enum status: { inactive: 0, active: 1 }
+  scope :like, ->(term) {
+    query = -> do
+      qmunicipe = Municipe.columns.map(&:name).map { |attr| " CAST(#{Municipe.table_name}.#{attr} as varchar)  LIKE :term " }
+      qendereco = Endereco.columns.map(&:name).map { |attr| "  CAST(#{Endereco.table_name}.#{attr} as varchar) LIKE :term " }
+      "#{qmunicipe.join(" or ")} or #{ qendereco.join(" or ")}"
+    end
+    where(query.===, term: "%#{term}%")
+  }
 
   def validate_cpf
     errors.add(:base, :invalid_cpf) unless Utility.cpf_is_valid?(cpf)
