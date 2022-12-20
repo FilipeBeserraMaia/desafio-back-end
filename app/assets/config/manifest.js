@@ -1,3 +1,4 @@
+//= link desafio.png
 import "@hotwired/turbo-rails"
 import "../javascript/controllers"
 

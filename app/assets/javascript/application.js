@@ -6,41 +6,12 @@
 //= require bootstrap-sprockets
 //= require jquery.remotipart
 
-var header           = document.getElementById('header');
-var navigationHeader = document.getElementById('navigation_header');
-var content          = document.getElementById('content');
-var showSidebar      = false;
-
-function toggleSidebar()
-{
-    showSidebar = !showSidebar;
-    if(showSidebar)
-    {
-        navigationHeader.style.marginLeft = '-10vw';
-        navigationHeader.style.animationName = 'showSidebar';
-        content.style.filter = 'blur(2px)';
-    }
-    else
-    {
-        navigationHeader.style.marginLeft = '-100vw';
-        navigationHeader.style.animationName = '';
-        content.style.filter = '';
-    }
-}
-
-function closeSidebar()
-{
-    if(showSidebar)
-    {
-        showSidebar = true;
-        toggleSidebar();
-    }
-}
-
-window.addEventListener('resize', function(event) {
-    if(window.innerWidth > 768 && showSidebar)
-    {
-        showSidebar = true;
-        toggleSidebar();
-    }
-});
+$(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+    $(".side-nav .collapse").on("hide.bs.collapse", function() {
+        $(this).prev().find(".fa").eq(1).removeClass("fa-angle-right").addClass("fa-angle-down");
+    });
+    $('.side-nav .collapse').on("show.bs.collapse", function() {
+        $(this).prev().find(".fa").eq(1).removeClass("fa-angle-down").addClass("fa-angle-right");
+    });
+})
