@@ -1,14 +1,34 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Enderecos</h1>
-
+<h1><%= Utility.translate_attr(Endereco, :collection_name).to_s %></h1>
 <div id="enderecos">
-  <% @enderecos.each do |endereco| %>
-    <%= render endereco %>
-    <p>
-      <%= link_to "Show this endereco", endereco %>
-    </p>
-  <% end %>
+  <table class="table table-bordered">
+    <thead>
+    <tr>
+      <th><%= Utility.translate_attr(Endereco, :cep) %></th>
+      <th><%= Utility.translate_attr(Endereco, :longr) %></th>
+      <th><%= Utility.translate_attr(Endereco, :complemento) %></th>
+      <th><%= Utility.translate_attr(Endereco, :bairro) %></th>
+      <th><%= Utility.translate_attr(Endereco, :cidade) %></th>
+      <th><%= Utility.translate_attr(Endereco, :uf) %></th>
+      <th><%= Utility.translate_attr(Endereco, :cdg_ibge) %></th>
+      <th><%= Utility.translate_attr(Endereco, :municipe_id) %></th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @enderecos.each do |endereco| %>
+      <tr>
+        <td><%= endereco.cep %></td>
+        <td><%= endereco.longr %></td>
+        <td><%= endereco.complemento %></td>
+        <td><%= endereco.bairro %></td>
+        <td><%= endereco.cidade %></td>
+        <td><%= endereco.uf %></td>
+        <td><%= endereco.cdg_ibge %></td>
+        <td><%= endereco.municipe.nome %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
 </div>
 
-<%= link_to "New endereco", new_endereco_path %>
