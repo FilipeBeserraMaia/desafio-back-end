@@ -1,52 +1,50 @@
-<%= form_with(model: municipe) do |form| %>
-  <% if municipe.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(municipe.errors.count, "error") %> prohibited this municipe from being saved:</h2>
+<div>
+  <%= form_with(model: municipe, html: { multipart: true }, data: { remote: true }, id: 'form-municipe') do |form| %>
 
-      <ul>
-        <% municipe.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+    <div>
+      <div id='foto-input-div'>
+        <%= form.label :foto %>
+        <%= form.file_field :foto, multiple: false %>
+      </div>
+    </div>
+
+    <div>
+      <%= form.label :nome, style: "display: block " %>
+      <%= form.text_field :nome, class: 'form-control' %>
+    </div>
+
+    <div>
+      <%= form.label :cpf, style: "display: block " %>
+      <%= form.text_field :cpf, class: 'form-control' %>
+    </div>
+
+    <div>
+      <%= form.label :cns, style: "display: block " %>
+      <%= form.text_field :cns, class: 'form-control' %>
+    </div>
+
+    <div>
+      <%= form.label :email, style: "display: block " %>
+      <%= form.text_field :email, class: 'form-control' %>
+    </div>
+
+    <div>
+      <%= form.label :dta_nasc, style: "display: block " %>
+      <%= form.date_field :dta_nasc, class: 'form-control' %>
+    </div>
+
+    <div>
+      <%= form.label :telefone, style: "display: block " %>
+      <%= form.text_field :telefone, class: 'form-control' %>
+    </div>
+
+    <div>
+      <%= form.label :status, style: "display: block " %>
+      <%= form.select :status, options_for_enum(form.object, :statuses), {}, class: 'form-control' %>
+    </div>
+
+    <div class="p-3">
+      <%= form.submit Utility.translate_actions(Municipe, action_name.to_sym), class: 'btn-sm btn-primary' %>
     </div>
   <% end %>
-
-  <div>
-    <%= form.label :nome, style: "display: block" %>
-    <%= form.text_field :nome %>
-  </div>
-
-  <div>
-    <%= form.label :cpf, style: "display: block" %>
-    <%= form.text_field :cpf %>
-  </div>
-
-  <div>
-    <%= form.label :cns, style: "display: block" %>
-    <%= form.text_field :cns %>
-  </div>
-
-  <div>
-    <%= form.label :email, style: "display: block" %>
-    <%= form.text_field :email %>
-  </div>
-
-  <div>
-    <%= form.label :dta_nasc, style: "display: block" %>
-    <%= form.text_field :dta_nasc %>
-  </div>
-
-  <div>
-    <%= form.label :telefone, style: "display: block" %>
-    <%= form.text_field :telefone %>
-  </div>
-
-  <div>
-    <%= form.label :status, style: "display: block" %>
-    <%= form.text_field :status %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>

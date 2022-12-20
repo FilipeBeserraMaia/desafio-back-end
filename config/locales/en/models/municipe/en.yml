@@ -1,0 +1,22 @@
+en:
+  activerecord:
+    attributes:
+      municipe:
+        collection_name: list of Citizens
+        id: Id
+        nome: Name
+        cpf: CPF
+        cns: CNS
+        email: Email
+        dta_nasc: Birth date
+        telefone: Telefone
+        status: Telephone
+        statuses:
+          active: Active
+          inactive: inactive
+        action: Action
+        actions:
+          new: New
+          edit: Edit
+          show: Show
+        class_name: Citizen

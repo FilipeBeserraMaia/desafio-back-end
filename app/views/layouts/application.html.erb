@@ -16,7 +16,9 @@
   <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
 </head>
 <body>
-
-<%= yield %>
+<div id="root" class="container">
+  <%= yield %>
+</div>
 </body>
 </html>
+<%= render 'components/modals/lg/large_modal' %>

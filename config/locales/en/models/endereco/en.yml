@@ -1,0 +1,21 @@
+en:
+  activerecord:
+    attributes:
+      endereco:
+        id: ID
+        cep: CEP
+        longr: Street
+        complemento: Address complement
+        bairro: Neighborhood
+        cidade: City
+        uf: state
+        cdg_ibge: ID IBGE
+        municipe_id: Citizen
+        created_at: created at
+        updated_at: updated at
+        action: action
+        actions:
+          new: New
+          edit: Edit
+          show: show
+        class_name: Address
