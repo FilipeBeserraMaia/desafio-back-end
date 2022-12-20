@@ -85,6 +85,19 @@ gem 'rest-client'
 gem 'devise'
 gem 'mailcatcher'
 gem 'twilio-ruby'
+group :development, :test do
+  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+
+  gem "rspec-rails", "~> 5.1", :groups => [:development, :test]
+  gem "factory_bot_rails", "~> 6.2", :groups => [:development, :test]
+  gem "faker", "~> 2.21", :groups => [:development, :test]
+end
+
+group :test do
+  gem "database_cleaner-active_record", "~> 2.0", :group => :test
+  gem "shoulda-matchers", "~> 5.1", :group => :test
+  gem "simplecov", "~> 0.21.2", :group => :test, require: false
+end
 
 
 
