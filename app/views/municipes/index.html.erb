@@ -3,13 +3,9 @@
 <h1><%= Utility.translate_attr(Municipe, :collection_name).to_s %></h1>
 
 <div class="">
-
+  <span class="pull-left m-2"><%= new_btn(Municipe, new_municipe_path, { remote: true }) %></span>
   <div id="municipes-table" class="table-responsive m-2">
-    <div>
-      <span class="pull-left m-2"><%= new_btn(Municipe, new_municipe_path, { remote: true }) %></span>
-    </div>
     <%= render 'table_municipe', municipes: @municipes %>
   </div>
 
 </div>
-

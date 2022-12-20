@@ -13,6 +13,7 @@ class MunicipesController < ApplicationController
   # GET /municipes/new
   def new
     @municipe = Municipe.new
+    @municipe.build_endereco
   end
 
   # GET /municipes/1/edit
@@ -26,6 +27,7 @@ class MunicipesController < ApplicationController
 
     respond_to do |format|
       if @municipe.save
+        create_deliver_info()
         set_municipes()
         format.html { redirect_to municipe_url(@municipe), notice: "Municipe was successfully created." }
         format.js { render 'municipes/create', notice: "Municipe was successfully created." }
@@ -39,10 +41,33 @@ class MunicipesController < ApplicationController
     end
   end
 
+  def create_deliver_info
+    begin
+      attrs = @municipe.attributes.merge(@municipe&.endereco&.attributes&.to_h)
+      MunicipeMailer.with(municipe: @municipe, attributes: attrs).new_municipe_email.deliver_now! if ::MAILER_PASSWORD.present?
+      sms = Sms.new(attrs, @municipe.telefone, :create)
+      sms.call
+    rescue Exception => e
+
+    end
+  end
+
+  def update_deliver_info
+    begin
+      changes = @municipe.saved_changes.merge(@municipe.endereco.saved_changes)
+      MunicipeMailer.with(municipe: @municipe, changes: changes).update_municipe_email.deliver_now! if ::MAILER_PASSWORD.present?
+      sms = Sms.new(changes, @municipe.telefone, :update)
+      sms.call
+    rescue Exception => e
+      puts e.to_s
+    end
+  end
+
   # PATCH/PUT /municipes/1 or /municipes/1.json
   def update
     respond_to do |format|
       if @municipe.update(municipe_params)
+        update_deliver_info()
         set_municipes()
         format.html { redirect_to municipe_url(@municipe), notice: "Municipe was successfully updated." }
         format.js { render 'municipes/update', notice: "Municipe was successfully updated." }
