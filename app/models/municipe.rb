@@ -1,9 +1,10 @@
 class Municipe < ApplicationRecord
 
   has_one :endereco, dependent: :destroy
+  has_one_attached :foto
   accepts_nested_attributes_for :endereco, reject_if: :all_blank
 
-  validates_presence_of :nome, :cpf, :cns, :email, :dta_nasc, :telefone, :status
+  validates_presence_of :nome, :cpf, :cns, :email, :dta_nasc, :telefone, :status, :foto
 
   validates_length_of :nome, minimum: 1, maximum: 80
   validates_length_of :cpf, minimum: 11, maximum: 11

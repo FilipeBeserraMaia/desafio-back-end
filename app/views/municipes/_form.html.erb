@@ -2,7 +2,14 @@
   <%= form_with(model: municipe, html: { multipart: true }, data: { remote: true }, id: 'form-municipe') do |form| %>
 
     <div>
-
+      <% if form.object.persisted? and form.object.foto.present? %>
+        <div id='img-tag-div'>
+          <div>
+            <%= image_tag url_for(form.object.foto), height: "auto", width: "50px" %>
+          </div>
+          <%= link_to "X", delete_foto_attached_municipe_path(foto_id: form.object.foto.id), data: { confirm: Utility.translate_form(:confirm) }, remote: true %>
+        </div>
+      <% end %>
       <div id='foto-input-div'>
         <%= form.label :foto %>
         <%= form.file_field :foto, multiple: false %>
@@ -94,8 +101,11 @@
         $.getJSON(url, params, function (data) {
             sucessAction(data, extraData);
         }).done(function () {
+            // console.log("second success");
         }).fail(function () {
+            // console.log("error");
         }).always(function () {
+            // console.log("complete");
         });
     }
 

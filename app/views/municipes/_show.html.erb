@@ -1,6 +1,12 @@
 <div>
   <h3><%= Utility.translate_class_name(Municipe) %></h3>
-
+  <div class="rounded-5">
+    <% if municipe.persisted? and municipe.foto.present? %>
+      <div>
+        <%= image_tag url_for(municipe.foto), height: "auto", width: "125px" %>
+      </div>
+    <% end %>
+  </div>
 
   <ul class="list-group">
     <li class="list-group-item">
