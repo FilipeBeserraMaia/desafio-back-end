@@ -85,6 +85,9 @@ gem 'rest-client'
 gem 'devise'
 gem 'mailcatcher'
 gem 'twilio-ruby'
+
+gem 'omniauth-google-oauth2'
+gem 'omniauth-rails_csrf_protection'
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 
