@@ -82,7 +82,7 @@ gem "cpf_cnpj"
 gem 'sassc-rails'
 gem 'bootstrap-sass'
 gem 'remotipart'
-
+gem 'rest-client'
 
 
 
