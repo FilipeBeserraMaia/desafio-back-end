@@ -77,14 +77,14 @@ end
 # custom
 gem 'jquery-rails'
 
-
 gem "cpf_cnpj"
 gem 'sassc-rails'
 gem 'bootstrap-sass'
 gem 'remotipart'
 gem 'rest-client'
 
-
+gem 'mailcatcher'
+gem 'twilio-ruby'
 
 
 

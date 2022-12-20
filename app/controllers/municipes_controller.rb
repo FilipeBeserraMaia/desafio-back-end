@@ -6,6 +6,14 @@ class MunicipesController < ApplicationController
     set_municipes()
   end
 
+  def search
+    set_municipes()
+
+    if params[:term].present?
+      @municipes = @municipes.like(params[:term])
+    end
+  end
+
   # GET /municipes/1 or /municipes/1.json
   def show
   end
@@ -13,7 +21,6 @@ class MunicipesController < ApplicationController
   # GET /municipes/new
   def new
     @municipe = Municipe.new
-    @municipe.build_endereco
   end
 
   # GET /municipes/1/edit
@@ -88,6 +95,11 @@ class MunicipesController < ApplicationController
       format.html { redirect_to municipes_url, notice: "Municipe was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  def delete_foto_attached
+    @foto = ActiveStorage::Attachment.find(params[:foto_id])
+    @foto.purge if @foto.present?
   end
 
   private

@@ -18,5 +18,10 @@ module MunicipeApp
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    config.before_configuration do
+      require_relative 'credentials'
+    end
+
   end
 end

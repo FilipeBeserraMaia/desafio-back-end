@@ -10,7 +10,6 @@ Rails.application.routes.draw do
     end
   end
 
-
   resources :enderecos
   get :estados, controller: :brasil_api
   get :municipios, controller: :brasil_api
