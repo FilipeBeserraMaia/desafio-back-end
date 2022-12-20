@@ -1,0 +1,12 @@
+pt:
+  activerecord:
+    errors:
+      messages:
+        blank: Não pode ficar em branco
+        too_short: Não contem a quantidade minima de caracteres
+        too_long: Contem  caracteres em excesso
+    form:
+      confirm: Tem certeza desta ação ?
+  app:
+    about: Um aplicativo simples para praticar o desenvolvimento de software de back-end
+    home_page: Home Page Municipe App
